@@ -12,6 +12,9 @@ class CmsTagLib {
 	private @Autowired CmsService cmsService
 
 	/**
+	 * Wraps a block of GSP code to be replaced with instance-specific code from
+	 * the database if there's an instance type match.
+	 *
 	 * @attr name REQUIRED the section name
 	 */
 	def section = { Map attrs, Closure body ->
@@ -24,6 +27,16 @@ class CmsTagLib {
 		else if (body) {
 			out << body()
 		}
+	}
+
+	/**
+	 * Renders a link to download a CmsFile with a cache-busting querystring.
+	 *
+	 * @attr name REQUIRED the CmsFile name
+	 */
+	def link = { Map attrs ->
+		String name = assertAttribute('name', attrs, 'link')
+		out << createLink(uri: '/cms/file/' + name + '?v=' + cmsService.fileVersion(name))
 	}
 
 	def getProperty(String name) {

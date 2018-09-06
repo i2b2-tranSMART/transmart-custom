@@ -1,7 +1,6 @@
 package org.transmart.plugin.custom
 
 import groovy.transform.CompileStatic
-import org.springframework.beans.factory.InitializingBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 
@@ -11,10 +10,9 @@ import javax.servlet.ServletContext
  * @author <a href='mailto:burt_beckwith@hms.harvard.edu'>Burt Beckwith</a>
  */
 @CompileStatic
-class CustomizationConfig implements InitializingBean {
+class CustomizationConfig {
 
 	boolean isTOS
-	String uiHeroImageUrl
 
 	@Value('${edu.harvard.transmart.access.level1:}')
 	String accessLevel1
@@ -60,10 +58,6 @@ class CustomizationConfig implements InitializingBean {
 
 	@Autowired private CustomizationService customizationService
 	@Autowired private ServletContext servletContext
-
-	void afterPropertiesSet() {
-		uiHeroImageUrl = servletContext.contextPath + '/images/transmartlogoHMS.jpg'
-	}
 
 	/**
 	 * Initialization that cannot happen in <code>afterPropertiesSet()</code>

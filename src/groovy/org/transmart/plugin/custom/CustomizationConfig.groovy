@@ -38,7 +38,7 @@ class CustomizationConfig {
 	@Value('${edu.harvard.transmart.instance.name:i2b2/tranSMART}')
 	String instanceName
 
-	@Value('${edu.harvard.transmart.instance.type:}')
+	@Value('${edu.harvard.transmart.instance.type:default}')
 	String instanceType
 
 	@Value('${loginBannerMessage:Please Login Below.}')

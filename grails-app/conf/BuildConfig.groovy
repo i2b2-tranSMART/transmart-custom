@@ -21,6 +21,7 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
+		compile 'com.bettercloud:vault-java-driver:3.1.0' // https://github.com/BetterCloud/vault-java-driver
 		test 'org.grails:grails-datastore-test-support:1.0.2-grails-2.4'
 	}
 
